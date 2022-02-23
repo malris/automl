@@ -339,7 +339,8 @@ class InputReader:
 
       source_id = tf.where(
           tf.equal(source_id, tf.constant('')), '-1', source_id)
-      source_id = tf.strings.to_number(source_id)
+      # source_id = tf.strings.to_number(source_id)
+      source_id = tf.strings.to_hash_bucket_fast(source_id, 1)
 
       # Pad groundtruth data for evaluation.
       image_scale = input_processor.image_scale_to_original
